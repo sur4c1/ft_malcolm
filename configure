@@ -1,0 +1,2 @@
+#!bash
+echo "SRCS =" $(find srcs -name '*.c' -o -name '*.s' | cut -c 6- | sed 's/..$//' ) > source.mk
