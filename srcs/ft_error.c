@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdarg.h>
 #include "ft_error.h"
 
 int ft_error(t_err errcode, ...)

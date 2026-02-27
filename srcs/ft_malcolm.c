@@ -74,13 +74,14 @@ int main(int argc, char *argv[])
 	interface_idx = if_nametoindex(target_ifa->ifa_name);
 	if (!interface_idx)
 		return (ft_error(ERR_NO_INTERFACE_IDX, strerror(errno)));
+	printf("Interface index is %d\n", interface_idx);
 	sockfd = socket(AF_PACKET, SOCK_RAW, ETH_P_ARP);
 	if (sockfd < 0)
 		return (ft_error(ERR_NO_SOCKET, strerror(errno)));
 	ft_bzero(&if_address, sizeof(if_address));
 	if_address.sll_ifindex = interface_idx;
 	if_address.sll_family = AF_PACKET;
-	if (bind(sockfd, (struct sockaddr *)&if_address, sizeof(struct sockaddr)))
+	if (bind(sockfd, (struct sockaddr *)&if_address, sizeof(struct sockaddr_ll)) < 0)
 		return (ft_error(ERR_NO_BIND, strerror(errno)));
 	while (1)
 	{
